@@ -104,7 +104,14 @@ class PostCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReviewDetailsPage(post: post),
+                ),
+              );
+            },
             child: Container(
               height: 40,
               decoration: BoxDecoration(

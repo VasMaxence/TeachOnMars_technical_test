@@ -20,9 +20,13 @@
     "@seeMoreButton": {
       "description": "see more button text"
     },
-    "errorFetchMsg": "Something went wrong, please try again in a moment.",
-    "@errorFetchMsg": {
-      "description": "error fetch message"
+    "errorNoPost": "An error has occurred",
+    "@errorNoPost": {
+      "description": "error (title) no post message"
+    },
+    "errorNoPostBody": "No message was given or an error has occurred, you can reload the page by clicking below.",
+    "@errorNoPostBody": {
+      "description": "error no post message"
     },
     "tryAgain": "Try again",
     "@tryAgain": {

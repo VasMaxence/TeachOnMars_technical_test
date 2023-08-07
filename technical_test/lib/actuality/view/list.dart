@@ -6,6 +6,7 @@ import 'package:technical_test/actuality/bloc/post_bloc.dart';
 import 'package:technical_test/actuality/bloc/post_state.dart';
 import 'package:technical_test/actuality/widget/post_card.dart';
 import 'package:technical_test/domain/enum.dart';
+import 'package:technical_test/l10n/l10n.dart';
 import 'package:technical_test/utils/extension/widget.dart';
 
 class ListPost extends StatefulWidget {
@@ -40,12 +41,53 @@ class _ListPostState extends State<ListPost> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    final l10n = context.l10n;
 
     return BlocBuilder<PostListBloc, PostListState>(
       builder: (context, state) {
+        if (state.status == PostStatus.initial || state.status == PostStatus.failure) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.errorNoPost,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.errorNoPostBody,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  InkWell(
+                    onTap: () => context.read<PostListBloc>().add(PostFetched()),
+                    child: Container(
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2E66D4),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Text(
+                        l10n.tryAgain.toUpperCase(),
+                        style: theme.textTheme.labelMedium,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
         switch (state.status) {
           case PostStatus.failure:
-            return Container();
+            return const SizedBox();
 
           case PostStatus.success:
             return Scrollbar(
@@ -59,9 +101,9 @@ class _ListPostState extends State<ListPost> {
                   if (index >= state.posts.length) {
                     return const Center(child: CircularProgressIndicator());
                   }
-            
+
                   final post = state.posts[index];
-            
+
                   return PostCard(post: post);
                 },
               ),

@@ -20,10 +20,15 @@
     "@seeMoreButton": {
       "description": "see more button text"
     },
-    "errorFetchMsg": "Un problème s'est produit, veuillez réessayer dans un instant.",
-    "@errorFetchMsg": {
-      "description": "error fetch message"
+    "errorNoPost": "Une erreur est survenue",
+    "@errorNoPost": {
+      "description": "error (title) no post message"
     },
+    "errorNoPostBody": "Aucun message n'a été donné ou une erreur s'est produite, vous pouvez recharger la page en cliquant ci-dessous.",
+    "@errorNoPostBody": {
+      "description": "error no post message"
+    },
+
     "tryAgain": "Réessayer",
     "@tryAgain": {
       "description": "try again message"
