@@ -47,7 +47,7 @@ class _ListPostState extends State<ListPost> {
 
     return BlocBuilder<PostListBloc, PostListState>(
       builder: (context, state) {
-        if (state.status == PostStatus.initial || state.status == PostStatus.failure) {
+        if ((state.status == PostStatus.initial || state.status == PostStatus.failure) && state.posts.isEmpty) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
